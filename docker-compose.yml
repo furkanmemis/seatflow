@@ -3,7 +3,7 @@ version: "3.8"
 services:
   mongo:
     image: mongo:8
-    container_name: flight-booking-mongo
+    container_name: seatflow-mongo
     restart: unless-stopped
     ports:
       - "27017:27017"

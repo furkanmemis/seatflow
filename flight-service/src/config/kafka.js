@@ -1,7 +1,7 @@
 const { Kafka } = require("kafkajs");
 
 const kafka = new Kafka({
-  clientId: "booking-service",
+  clientId: "flight-service",
   brokers: ["localhost:29092"],
 });
 

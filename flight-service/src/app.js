@@ -4,12 +4,14 @@ require('dotenv').config();
 
 const port = process.env.PORT || 8080;
 const connectDB = require('./config/db');
+const flightRoutes = require('./routes/flight');
 
 connectDB();
 
 app.use(express.json());
 
-// Define routes  
+// Define routes
+app.use('/flights', flightRoutes);
 
 
 app.get('/health', (req, res) => {

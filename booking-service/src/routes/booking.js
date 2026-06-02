@@ -6,6 +6,6 @@ router.post("/", createBooking);
 router.get("/:id", getBookingById);
 router.get("/user/:userId", getBookingsByUserId);
 router.get("/flight/:flightId", getBookingsByFlightId);
-router.put("/:id/status", updateBookingStatus);
+router.put("/:id", updateBookingStatus);
 
 module.exports = router;

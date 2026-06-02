@@ -1,6 +1,15 @@
 const express = require('express');
 const app = express();
-const port = 3000;
+require('dotenv').config();
+
+const port = process.env.PORT || 8080;
+const connectDB = require('./config/db');
+
+connectDB();
+
+app.use(express.json());
+
+// Define routes  
 
 
 app.get('/health', (req, res) => {

@@ -1,7 +1,9 @@
 const Booking = require("../models/Booking");
+const { publishBookingCreated } = require("../producer/bookingProducer");
 
 exports.createBooking = async (bookingData) => {
   const booking = new Booking(bookingData);
+  await publishBookingCreated(booking);
   return await booking.save();
 };
 

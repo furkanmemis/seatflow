@@ -1,4 +1,5 @@
 const kafka = require("../config/kafka");
+const {updateFlightSeats} = require("../services/flight");
 
 const consumer = kafka.consumer({
   groupId: "flight-group",
@@ -23,7 +24,7 @@ const startConsumer = async () => {
         userId,
       } = event;
 
-      console.log(`Processing booking for flight ${flightId}, seat ${seatRow}${seatNumber} `+ userId + " "+ new Date().toLocaleDateString("tr-TR") + " " + new Date().toLocaleTimeString("tr-TR"));
+      await updateFlightSeats(flightId, seatRow, seatNumber, "reserved", userId);
     },
   });
 };

@@ -32,3 +32,25 @@ exports.getAllFlights = async () => {
 exports.getFlightById = async (id) => {
     return await Flight.findById(id);
 };
+
+exports.updateFlightSeats = async (flightId, seatRow, seatNumber, status, userId) => {
+    const flight = await Flight.findById(flightId);
+
+    if (!flight) {
+        throw new Error("Flight not found");
+    }
+
+    const row = flight.seatMap.find((r) => r.rowNumber === seatRow);
+    if (!row) {
+        throw new Error("Seat row not found");
+    }
+
+    const seat = row.seats.find((s) => s.seatNumber === seatNumber);
+    if (!seat) {
+        throw new Error("Seat number not found");
+    }
+
+    seat.status = status;
+    seat.userId = userId;
+    await flight.save();
+}

@@ -17,6 +17,11 @@ const seatSchema = new mongoose.Schema(
       enum: ["available", "occupied", "reserved"],
       default: "available",
     },
+    userId: {
+      type: String,
+      required: false,
+      default: "",
+    },
   },
   { _id: false }
 );

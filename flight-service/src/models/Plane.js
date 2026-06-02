@@ -12,11 +12,6 @@ const seatSchema = new mongoose.Schema(
       enum: ["economy", "business"],
       required: true,
     },
-    status: {
-      type: String,
-      enum: ["available", "occupied", "reserved"],
-      default: "available",
-    },
   },
   { _id: false }
 );
@@ -40,40 +35,35 @@ const seatRowSchema = new mongoose.Schema(
   { _id: false }
 );
 
-const flightSchema = new mongoose.Schema(
+const planeSchema = new mongoose.Schema(
   {
-    flightNumber: {
+    tailNumber: {
       type: String,
       required: true,
       unique: true,
+      trim: true,
     },
-    departureAirport: {
+    manufacturer: {
       type: String,
       required: true,
+      trim: true,
     },
-    arrivalAirport: {
+    model: {
       type: String,
       required: true,
+      trim: true,
     },
-    departureTime: {
-      type: Date,
+    seatCapacity: {
+      type: Number,
       required: true,
-    },
-    arrivalTime: {
-      type: Date,
-      required: true,
+      min: 1,
     },
     status: {
       type: String,
-      enum: ["scheduled", "delayed", "cancelled", "departed", "arrived"],
-      default: "scheduled",
+      enum: ["active", "maintenance", "retired"],
+      default: "active",
     },
-    planeId: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Plane",
-      required: true,
-    },
-    seatMap: {
+    seatTemplate: {
       type: [seatRowSchema],
       required: true,
     },
@@ -83,4 +73,4 @@ const flightSchema = new mongoose.Schema(
   }
 );
 
-module.exports = mongoose.model("Flight", flightSchema);
+module.exports = mongoose.model("Plane", planeSchema);

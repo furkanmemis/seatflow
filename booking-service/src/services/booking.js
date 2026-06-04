@@ -12,7 +12,11 @@ exports.getBookingsByUserId = async (userId) => {
 };
 
 exports.updateBookingStatus = async (bookingId, status) => {
-  return await Booking.findByIdAndUpdate(bookingId, { bookingStatus: status }, { new: true });
+  return await Booking.findByIdAndUpdate(
+    bookingId,
+    { bookingStatus: status },
+    { returnDocument: "after", runValidators: true }
+  );
 }
 
 exports.getBookingById = async (bookingId) => {

@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 require('dotenv').config();
 const { connectProducer } = require('./producer/bookingProducer');
+const {startConsumer} = require('./consumers/flightBookingUpdateConsumers');
 
 const port = process.env.PORT || 8081;
 const connectDB = require('./config/db');
@@ -10,6 +11,7 @@ const bookingRoutes = require('./routes/booking');
 
 connectDB();
 connectProducer();
+startConsumer();
 
 app.use(express.json());
 

@@ -22,11 +22,12 @@ const startConsumer = async () => {
         seatRow,
         seatNumber,
         userId,
+        bookingId
       } = event;
 
       console.log("booking-created event received:", event);
 
-      await updateFlightSeats(flightId, seatRow, seatNumber, "reserved", userId);
+      await updateFlightSeats(flightId, seatRow, seatNumber, "reserved", userId, bookingId);
     },
   });
 };
